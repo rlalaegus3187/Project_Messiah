@@ -1,4 +1,3 @@
-// server/net/socketHandlers.js
 import * as Status from "../status.js";
 import { newRaid, ensureRaid, cooldownsByRaid, getSkillData } from "../state/raid.js";
 import { activateRaid, finishRaid } from "../tick.js";
