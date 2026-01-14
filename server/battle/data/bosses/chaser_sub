@@ -1,0 +1,90 @@
+{
+  "id": "chaser_sub",
+  "name": "영혼추격자",
+  "def": 20,
+  "phases": [
+    {
+      "name": "P1",
+      "rangeHpPct": [80, 100],
+      "randomEverySec": 4.0,
+      "randomActions": [
+        {
+          "name": "영혼 수집",
+          "weight": 5,
+          "type": "attackCircleTarget",
+          "range": 3,
+          "radius": 2,
+          "dmg": 120,
+          "windupMs": 2000,
+          "say": ""
+        },
+        {
+          "name": "텔레포트",
+          "weight": 4,
+          "type": "moveTowardNearest",
+          "maxSteps": 14,
+          "windupMs" : 2000,
+          "say": ""
+        }
+    ]
+    },
+    {
+      "name": "P2",
+      "rangeHpPct": [0, 80],
+      "onPhaseShift": {
+        "name": "소환",
+        "type": "summonMinions",
+        "minions": [
+          {
+            "id": "chaser2_sub",
+            "spawn": {
+              "x": 10,
+              "y": 6
+            },
+            "hp": 120,
+            "type": "sub"
+          },
+          {
+            "id": "chaser2_sub",
+            "spawn": {
+              "x": 7,
+              "y": 11
+            },
+            "hp": 120,
+            "type": "sub"
+          }
+        ],
+        "say": "잔상이 갈라진다."
+      },
+      "randomEverySec": 4.0,
+      "randomActions": [
+        {
+          "name": "영혼 수집",
+          "weight": 5,
+          "type": "attackCircleTarget",
+          "range": 3,
+          "radius": 2,
+          "dmg": 120,
+          "windupMs": 2000,
+          "say": ""
+        },
+        {
+          "name": "텔레포트",
+          "weight": 3,
+          "type": "moveTowardNearest",
+          "maxSteps": 14,
+          "windupMs" : 2000,
+          "say": ""
+        },
+        {
+      "name": "망자의 비명",
+      "weight": 1,
+      "type": "globalAoE",
+      "dmg": 50,
+     "windupMs": 3000,
+     "say": ""
+    }
+      ]
+    }
+  ]
+}
