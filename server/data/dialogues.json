@@ -1,0 +1,117 @@
+{
+  "sample_1": {
+    "nodes": {
+      "start": {
+        "text": [
+          "[샘플 이벤트] 로비 바닥에 빛나는 카드키가 떨어져 있다.",
+          "가까이 가면 카드키에서 미세한 진동이 느껴진다."
+        ],
+        "choices": [
+          { "label": "카드키를 줍는다", "next": "pickup" },
+          { "label": "주변을 살핀다", "next": "look_around" },
+          { "label": "그냥 지나간다", "next": "end" }
+        ]
+      },
+
+      "look_around": {
+        "text": [
+          "주변을 둘러보니 벽면에 작은 패널이 있다.",
+          "패널에는 '인증된 카드키만 사용 가능' 이라고 적혀 있다."
+        ],
+        "choices": [
+          { "label": "패널을 눌러본다", "next": "panel_try" },
+          { "label": "카드키를 줍는다", "next": "pickup" },
+          { "label": "뒤로 물러난다", "next": "start" }
+        ]
+      },
+
+      "pickup": {
+        "requires": {
+          "keyword": {
+            "none": ["sample_all_features_1_picked"]
+          }
+        },
+        "onfail": "pickup_fail",
+        "text": [
+          "카드키를 주웠다.",
+          "카드키 뒷면에는 ‘A-17’ 이라는 각인이 새겨져 있다."
+        ],
+        "effect": {
+          "quest": ["sample_all_features_1_quest"],
+          "keyword_add": ["sample_all_features_1_picked"]
+        },
+        "choices": [
+          { "label": "패널로 가서 사용해본다", "next": "panel_try" },
+          { "label": "일단 들고 가만히 있어본다", "next": "end" }
+        ]
+      },
+
+      "pickup_fail": {
+        "text": [
+          "이미 카드키를 주웠던 것 같다.",
+          "손에 잡히는 감각이 없다."
+        ],
+        "choices": [
+          { "label": "패널 쪽으로 가본다", "next": "panel_try" },
+          { "label": "그만둔다", "next": "end" }
+        ]
+      },
+
+      "panel_try": {
+        "requires": {
+          "keyword": {
+            "all": ["sample_all_features_1_picked"]
+          },
+          "switch": {
+            "none": ["sample_all_features_1", "open"]
+          }
+        },
+        "onfail": "panel_try_fail",
+        "text": [
+          "카드키를 패널에 가져다 대자, 패널이 짧게 빛난다.",
+          "어딘가에서 잠금이 풀리는 소리가 들렸다."
+        ],
+        "effect": {
+          "switch": ["sample_all_features_1", "open", "120000"],
+          "keyword_add": ["sample_all_features_1_panel_opened"]
+        },
+        "choices": [
+          { "label": "열린 곳으로 이동한다", "next": "after_open" },
+          { "label": "잠깐 더 살핀다", "next": "end" }
+        ]
+      },
+
+      "panel_try_fail": {
+        "text": [
+          "패널은 반응하지 않는다.",
+          "카드키가 없거나 이미 사용된 상태인 것 같다."
+        ],
+        "choices": [
+          { "label": "다시 확인한다", "next": "start" },
+          { "label": "포기한다", "next": "end" }
+        ]
+      },
+
+      "after_open": {
+        "text": [
+          "잠금이 풀린 공간에서 작은 메모를 발견했다.",
+          "메모에는 ‘다음은 너의 선택에 달렸다’ 라고 적혀 있다."
+        ],
+        "choices": [
+          { "label": "메모를 챙긴다", "next": "end" },
+          { "label": "메모를 두고 간다", "next": "end" }
+        ]
+      },
+
+      "end": {
+        "text": "이벤트가 종료되었다.",
+        "choices": []
+      },
+
+      "fallback": {
+        "text": "돌아가자.",
+        "choices": []
+      }
+    }
+  }
+}
