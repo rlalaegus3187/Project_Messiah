@@ -114,7 +114,6 @@ function updateCooldowns(io, raidId, dt) {
   if (!cdMap) return;
 
   for (const [pid, cds] of cdMap.entries()) {
-    // 개인 채널로만 쿨다운 전송(브로드캐스트 방지)
     const personalRoom = `p:${String(pid)}`;
 
     if (cds instanceof Map) {
