@@ -14,7 +14,7 @@ import { startTick } from "./tick.js";
 
 const app = createApp();
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT_BATTLE;
 const CORS_ORIGIN = process.env.CORS_ORIGIN;
 
 const HTTPS_KEY_PATH = process.env.HTTPS_KEY_PATH;
