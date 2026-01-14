@@ -1,0 +1,127 @@
+{
+  "id": "chaser",
+  "name": "영혼추격자",
+  "def": 20,
+  "phases": [
+    {
+      "name": "P1",
+      "rangeHpPct": [80, 100],
+      "randomEverySec": 5.0,
+      "randomActions": [
+        {
+          "name": "영혼 수집",
+          "weight": 4,
+          "type": "attackCircleTarget",
+          "range": 3,
+          "radius": 2,
+          "dmg": 100,
+          "windupMs": 2000,
+          "say": ""
+        },
+        {
+          "name": "텔레포트",
+          "weight": 3,
+          "type": "moveTowardNearest",
+          "maxSteps": 14,
+          "windupMs" : 2000,
+          "say": ""
+        },
+        {
+          "name": "낙인",
+          "weight": 6,
+          "type": "attackCircleTarget",
+          "range": 4,
+          "radius": 4,
+          "dmg": 50,
+          "windupMs": 3000,
+          "say": ""
+        }
+      ]
+    },
+    {
+      "name": "P2",
+      "rangeHpPct": [0, 80],
+      "onPhaseShift": {
+        "name": "소환",
+        "type": "summonMinions",
+        "minions": [
+          {
+            "id": "chaser_sub",
+            "spawn": {
+              "x": 3,
+              "y": 6
+            },
+            "hp": 300,
+            "type": "sub"
+          }
+        ],
+        "say": "잔상이 나타난다."
+      },
+      "randomEverySec": 5.0,
+      "randomActions": [
+        {
+          "name": "영혼 수집",
+          "weight": 4,
+          "type": "attackCircleTarget",
+          "range": 3,
+          "radius": 2,
+          "dmg": 100,
+          "windupMs": 2000,
+          "say": ""
+        },
+        {
+          "name": "텔레포트",
+          "weight": 3,
+          "type": "moveTowardNearest",
+          "maxSteps": 14,
+          "windupMs" : 2000,
+          "say": ""
+        },
+        {
+          "name": "낙인",
+          "weight": 6,
+          "type": "attackCircleTarget",
+          "range": 4,
+          "radius": 4,
+          "dmg": 50,
+          "windupMs": 3000,
+          "say": ""
+        }
+      ]
+    }
+  ],
+  "timelineOnce": [
+    {
+      "name": "망자의 비명",
+      "t": 30,
+      "type": "globalAoE",
+      "dmg": 70,
+     "windupMs": 5000,
+     "say": "흐느낌이 들려온다."
+    },
+    {
+      "name": "망자의 비명",
+      "t": 60,
+      "type": "globalAoE",
+      "dmg": 70,
+     "windupMs": 5000,
+     "say": "흐느낌이 들려온다."
+    },
+    {
+      "name": "망자의 비명",
+      "t": 90,
+      "type": "globalAoE",
+      "dmg": 70,
+     "windupMs": 5000,
+     "say": "흐느낌이 들려온다."
+    },
+    {
+      "name": "망자의 비명",
+      "t": 120,
+      "type": "globalAoE",
+      "dmg": 70,
+     "windupMs": 5000,
+     "say": "흐느낌이 들려온다."
+    }
+  ]
+}
