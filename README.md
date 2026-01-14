@@ -49,7 +49,7 @@ Project_Messiah는 socket.io 기반 WebSocket 통신을 활용한 온라인 실�
   - AP와 MP가 충분해야 스킬 사용 가능
   - 스킬별 소모 자원 상이
 
-### 적(Enemy)
+### 적
 
 - 개체별로 이미지, 스탯, 스킬이 모두 다름
 - 패턴 구성
