@@ -12,7 +12,6 @@
           { "label": "그냥 지나간다", "next": "end" }
         ]
       },
-
       "look_around": {
         "text": [
           "주변을 둘러보니 벽면에 작은 패널이 있다.",
@@ -45,7 +44,6 @@
           { "label": "일단 들고 가만히 있어본다", "next": "end" }
         ]
       },
-
       "pickup_fail": {
         "text": [
           "이미 카드키를 주웠던 것 같다.",
@@ -56,7 +54,6 @@
           { "label": "그만둔다", "next": "end" }
         ]
       },
-
       "panel_try": {
         "requires": {
           "keyword": {
@@ -91,7 +88,6 @@
           { "label": "포기한다", "next": "end" }
         ]
       },
-
       "after_open": {
         "text": [
           "잠금이 풀린 공간에서 작은 메모를 발견했다.",
@@ -102,17 +98,125 @@
           { "label": "메모를 두고 간다", "next": "end" }
         ]
       },
-
       "end": {
         "text": "이벤트가 종료되었다.",
         "choices": []
       },
-
       "fallback": {
         "text": "돌아가자.",
         "choices": []
       }
     }
+  }.
+  "elev_btn": {
+    "nodes": {
+      "start": {
+        "text": "몇 층으로 갈까....",
+        "choices": [
+          {
+            "label": "B2",
+            "next": "end",
+            "effect": {
+              "door": {
+                "target": "auditorium",
+                "targetSpawn": {
+                  "x": 318,
+                  "y": 877,
+                  "dir": "down"
+                }
+              }
+            }
+          },
+          {
+            "label": "B1",
+            "next": "end",
+            "effect": {
+              "door": {
+                "target": "b1_corrider",
+                "targetSpawn": {
+                  "x": 446,
+                  "y": 206,
+                  "dir": "down"
+                }
+              }
+            }
+          },
+          {
+            "label": "1F",
+            "next": "end",
+            "effect": {
+              "door": {
+                "target": "lobby",
+                "targetSpawn": {
+                  "x": 689,
+                  "y": 654,
+                  "dir": "down"
+                }
+              }
+            }
+          },
+          {
+            "label": "2F",
+            "next": "end",
+            "effect": {
+              "door": {
+                "target": "2f_corrider",
+                "targetSpawn": {
+                  "x": 160,
+                  "y": 223,
+                  "dir": "down"
+                }
+              }
+            }
+          },
+          {
+            "label": "5F",
+            "next": "end",
+            "effect": {
+              "door": {
+                "target": "5f_corrider",
+                "targetSpawn": {
+                  "x": 346,
+                  "y": 195,
+                  "dir": "down"
+                }
+              }
+            }
+          },
+          {
+            "label": "13F",
+            "next": "end",
+            "effect": {
+              "door": {
+                "target": "13f_president",
+                "targetSpawn": {
+                  "x": 1217,
+                  "y": 1625,
+                  "dir": "down"
+                }
+              }
+            }
+          },
+          {
+            "label": "15F",
+            "next": "end",
+            "effect": {
+              "door": {
+                "target": "15f_rooftop",
+                "targetSpawn": {
+                  "x": 480,
+                  "y": 165,
+                  "dir": "top"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "end": {
+        "text": "엘리베이터가 도착했다.",
+        "choices": []
+      }
+    }
   }
 }
-
