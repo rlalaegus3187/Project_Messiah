@@ -36,20 +36,18 @@ function serializeBoss(b) {
 }
 
 function serializeOverrides(raid) {
-  // Map은 그대로 보내면 깨지므로 배열로 변환
   if (!raid?.tileOverrides) return [];
   return Array.from(raid.tileOverrides, ([key, v]) => ({
     key,
     x: v?.x,
     y: v?.y,
-    // 안전하게: effects/applyStatus가 없을 수 있음
     id: v?.effects?.[0]?.applyStatus?.[0]?.id ?? null,
   }));
 }
 
 export function installSocketHandlers(io) {
   io.on("connection", (socket) => {
-    let currentRaid = null; // roomId 형태(battle:xxx)로 통일
+    let currentRaid = null;
     let playerId = null;
 
     /* ---------------- 팀 관련(중복 제거) ---------------- */
@@ -82,7 +80,6 @@ export function installSocketHandlers(io) {
     });
 
     socket.on("team:toggle", ({ room, chId } = {}) => {
-      // 준비 상태는 서버 상태를 실제로 바꾸는 로직이 별도로 있으면 그걸 호출
       joinTeamRoom(room, chId);
       io.in(currentRaid).emit("team:update", "member:ready");
     });
