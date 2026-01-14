@@ -1,0 +1,67 @@
+{
+  "town": {
+    "w": 1024,
+    "h": 768,
+    "bg": "/explore/assets/town_bg.png",
+    "fg": "/explore/assets/town_fg.png",
+    "spawn": {
+      "x": 200,
+      "y": 400
+    },
+    "collision": {
+      "src": "/explore/data/collision/town_collision.json",
+      "tileSize": 32,
+      "width": 32,
+      "solid": [
+        9
+      ]
+    },
+    "objects": [
+      {
+        "id": "bob",
+        "type": "npc",
+        "npcId": "npc_bob",
+        "x": 320,
+        "y": 420,
+        "sx": 32,
+        "sy": 0,
+        "collide": true,
+        "bbox": {
+          "w": 26,
+          "h": 22,
+          "oy": 4
+        }
+      },
+      {
+        "id": "chest_1",
+        "type": "chest",
+        "x": 540,
+        "y": 460,
+        "sx": 64,
+        "sy": 0
+      },
+      {
+        "id": "lever_1",
+        "type": "switch",
+        "x": 740,
+        "y": 420,
+        "sx": 0,
+        "sy": 32
+      },
+      {
+        "id": "locked_gate",
+        "type": "door_locked",
+        "needSwitch": "lever_1",
+        "target": "house",
+        "targetSpawn": {
+          "x": 160,
+          "y": 300
+        },
+        "x": 820,
+        "y": 420,
+        "sx": 232,
+        "sy": 0
+      }
+    ]
+  }
+}
