@@ -1,0 +1,248 @@
+{
+  "skills": [
+    {
+      "id": "slash",
+      "name": "참격",
+      "apCost": 2,
+      "skCost": 2,
+      "cooldown": 1,
+      "range": 1,
+      "shape": "single",
+      "dmg": 5,
+      "desc": "근접한 타일 1개를 ATK 주사위 4개로 공격"
+    },
+    {
+      "id": "bleed",
+      "name": "출혈",
+      "apCost": 3,
+      "skCost": 3,
+      "cooldown": 5,
+      "range": 1,
+      "shape": "single",
+      "dmg": 1,
+      "applyStatus": [
+        {
+          "target": "enemy",
+          "id": "bleed",
+          "durationMs": 5000,
+          "magnitude": 8,
+          "stacks": 1
+        }
+      ],
+      "desc": "근접한 타일 1개를 ATK 주사위 1개로 공격. 5초간 8의 피해를 주는 [출혈] 부여"
+    },
+    {
+      "id": "explosion",
+      "name": "폭파",
+      "apCost": 4,
+      "skCost": 4,
+      "cooldown": 4,
+      "range": 4,
+      "shape": "circle",
+      "radius": 1,
+      "dmg": 2,
+      "desc": "최대 4거리 내의 범위에 ATK 주사위 2개만큼의 피해"
+    },
+    {
+      "id": "burn",
+      "name": "불태우기",
+      "apCost": 4,
+      "skCost": 4,
+      "cooldown": 5,
+      "range": 4,
+      "shape": "circle",
+      "radius": 1,
+      "dmg": 1,
+      "applyStatus": [
+        {
+          "target": "enemy",
+          "id": "burn",
+          "durationMs": 5000,
+          "magnitude": 6,
+          "stacks": 1
+        }
+      ],
+      "desc": "최대 4거리 내의 범위에 ATK 주사위 1개 만큼의 피해. 5초간 6의 피해를 입히는 [화상] 부여"
+    },
+    {
+      "id": "poison",
+      "name": "중독",
+      "apCost": 4,
+      "skCost": 4,
+      "cooldown": 5,
+      "range": 2,
+      "shape": "single",
+      "dmg": 2,
+      "applyStatus": [
+        {
+          "target": "enemy",
+          "id": "poison",
+          "durationMs": 5000,
+          "magnitude": 10,
+          "stacks": 1
+        }
+      ],
+      "desc": "최대 2거리 내 타일에 ATK 주사위 1개 만큼의 피해. 5초간 10의 피해를 입히는 [중독] 부여"
+    },
+    {
+      "id": "dash",
+      "name": "질주",
+      "apCost": 3,
+      "skCost": 1,
+      "cooldown": 3,
+      "range": 3,
+      "shape": "move",
+      "desc": "직선 방향으로 최대 3 거리를 이동"
+    },
+    {
+      "id": "teleport",
+      "name": "텔레포트",
+      "apCost": 5,
+      "skCost": 3,
+      "cooldown": 6,
+      "range": 6,
+      "shape": "teleport",
+      "desc": "6거리 내 임의 위치로 이동"
+    },
+    {
+      "id": "heal",
+      "name": "회복",
+      "apCost": 3,
+      "skCost": 5,
+      "cooldown": 5,
+      "range": 4,
+      "shape": "single",
+      "heal": 50,
+      "desc": "4 거리내 대상의 체력을 50 회복"
+    },
+    {
+      "id": "regen",
+      "name": "재생",
+      "apCost": 3,
+      "skCost": 5,
+      "cooldown": 5,
+      "range": 2,
+      "shape": "single",
+      "heal": 10,
+      "applyStatus": [
+        {
+          "target": "ally",
+          "id": "regen",
+          "durationMs": 3000,
+          "magnitude": 10
+        }
+      ],
+      "desc": "2 거리내 대상의 체력을 10 회복하고, 3초간 10의 체력을 회복하는 [재생] 부여"
+    },
+    {
+      "id": "weaken",
+      "name": "약화",
+      "apCost": 5,
+      "skCost": 4,
+      "cooldown": 5,
+      "range": 3,
+      "shape": "single",
+      "dmg": 1,
+      "applyStatus": [
+        {
+          "target": "enemy",
+          "id": "vuln",
+          "durationMs": 2000,
+          "magnitude": 1.5
+        }
+      ],
+      "desc": "최대 3거리 내의 타일에 ATK 주사위 1개 만큼의 피해. 2초간 받는 피해를 50% 증가시키는 [취약] 부여"
+    },
+    {
+      "id": "fortify",
+      "name": "경화",
+      "apCost": 4,
+      "skCost": 4,
+      "cooldown": 5,
+      "range": 3,
+      "shape": "single",
+      "heal": 10,
+      "applyStatus": [
+        {
+          "target": "ally",
+          "id": "fortify",
+          "durationMs": 5000,
+          "magnitude": 0.5
+        }
+      ],
+      "desc": "최대 3거리 내 대상의 체력을 10 회복. 5초간 받는 피해를 50% 경감시키는 [경화] 부여"
+    },
+    {
+      "id": "empower",
+      "name": "강화",
+      "apCost": 2,
+      "skCost": 3,
+      "cooldown": 4,
+      "range": 3,
+      "shape": "single",
+      "applyStatus": [
+        {
+          "target": "ally",
+          "id": "empower",
+          "durationMs": 2000,
+          "magnitude": 1.35
+        }
+      ],
+      "desc": "최대 3거리 내 대상에게 2초간 주는 피해를 50% 증가시키는 [강화] 부여"
+    },
+    {
+      "id": "adrenaline",
+      "name": "아드레날린",
+      "apCost": 4,
+      "skCost": 5,
+      "cooldown": 5,
+      "range": 2,
+      "shape": "single",
+      "applyStatus": [
+        {
+          "target": "ally",
+          "id": "adrenaline",
+          "durationMs": 2000,
+          "magnitude": 1.8
+        }
+      ],
+      "desc": "최대 2거리 내 대상에게 2초간 주는 피해를 80% 증가시키는 [아드레날린] 부여"
+    },
+    {
+      "id": "taunt",
+      "name": "도발",
+      "apCost": 1,
+      "skCost": 2,
+      "cooldown": 1,
+      "range": 3,
+      "shape": "single",
+      "applyStatus": [
+        {
+          "target": "enemy",
+          "id": "taunt",
+          "durationMs": 30000,
+          "magnitude": 1
+        }
+      ],
+      "desc": "최대 3거리 대상을 지정. 일정 시간 동안 해당 대상이 나를 우선적으로 공격하게 함"
+    },
+    {
+      "id": "haste",
+      "name": "가속",
+      "apCost": 5,
+      "skCost": 4,
+      "cooldown": 5,
+      "range": 2,
+      "shape": "single",
+      "applyStatus": [
+        {
+          "target": "ally",
+          "id": "haste",
+          "durationMs": 5000,
+          "magnitude": 2
+        }
+      ],
+      "desc": "최대 2거리 내 대상에게 5초간 AP 회복량을 2배로 만드는 [가속] 부여"
+    }
+  ]
+}
