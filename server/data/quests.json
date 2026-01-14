@@ -1,0 +1,43 @@
+{
+  "sample_personal_quest": {
+    "name": "퀘스트의 대표 이름",
+    "summary": "퀘스트 요약본. 해당 설명은 바뀌지 않고 그대로 남아있을 겁니다.",
+    "subquests": {
+      "subquest_1": {
+        "title": "서브퀘스트1.",
+        "summary": "서브퀘스트1의 내용. 오른쪽 npc에게 말을 걸었다.",
+        "obj_id": "lobby_npc_2",
+        "dialogue_id": "sample_personal_quest_1",
+        "next": [
+          "subquest_2"
+        ]
+      },
+      "subquest_2": {
+        "title": "서브퀘스트 2.",
+        "summary": "서브 퀘스트 2에 해당하는 설명문입니다. 다시 오른쪽 안내원에게 가서 말을 걸자!",
+        "obj_id": "lobby_npc_1",
+        "dialogue_id": "sample_personal_quest_2",
+        "next": [
+          "subquest_3"
+        ]
+      },
+      "subquest_3": {
+        "title": "서브 퀘스트 3.",
+        "summary": "최종 단계에 해당하는 설명문입니다. 다시 왼쪽 안내워에게 말을 걸면 퀘스트가 완료!",
+        "obj_id": "lobby_npc_2",
+        "dialogue_id": "sample_personal_quest_complete",
+        "rewards": {
+          "keyword_add": [
+            "sample_personal_quest_done"
+          ],
+          "item_add": [
+            {
+              "item_id": "11",
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
+  }
+}
