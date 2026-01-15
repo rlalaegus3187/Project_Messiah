@@ -65,4 +65,5 @@ if ($character["ch_status"] != "IN_BATTLE" && !$isViewer) {
 
 <?php
 include_once('./_tail.php');
+
 ?>
