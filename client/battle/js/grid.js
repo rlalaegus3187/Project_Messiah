@@ -149,6 +149,7 @@ export class GridRenderer {
           if (disp) this._updateHPBar(disp._hpBar, b.hp, b.maxHp || 100);
         }
       } else if (!bossUid && payload.hp != null) {
+        // 하위호환: 단일 보스 가정
         const first = this._firstBoss();
         if (first) {
           first.hp = payload.hp;
@@ -159,10 +160,10 @@ export class GridRenderer {
     });
 
     this._attackFx = {
-      default: { src: '/battle/assets/effect/hit_simple.png', fw: 64, fh: 64, cols: 4, rows: 4, speed: 0.5, loop: false, anchor: 0.5, blend: PIXI.BLEND_MODES.ADD, yOffset: 0 },
-      slash: { src: '/battle/assets/effect/slash.png', fw: 64, fh: 64, cols: 8, rows: 2, speed: 0.8, loop: false, anchor: 0.5, blend: PIXI.BLEND_MODES.NORMAL, yOffset: 0 },
-      boom: { src: '/battle/assets/effect/hit.png', fw: 64, fh: 64, cols: 8, rows: 8, speed: 0.5, loop: false, anchor: 0.5, blend: PIXI.BLEND_MODES.ADD, yOffset: 0 },
-      heal: { src: '/battle/assets/effect/heal.png', fw: 64, fh: 64, cols: 8, rows: 4, speed: 0.5, loop: false, anchor: 0.5, blend: PIXI.BLEND_MODES.ADD, yOffset: 0 }
+      default: { src: 'https://scenario-messiah.com/battle/assets/effect/hit_simple.png', fw: 64, fh: 64, cols: 4, rows: 4, speed: 0.5, loop: false, anchor: 0.5, blend: PIXI.BLEND_MODES.ADD, yOffset: 0 },
+      slash: { src: 'https://scenario-messiah.com/battle/assets/effect/slash.png', fw: 64, fh: 64, cols: 8, rows: 2, speed: 0.8, loop: false, anchor: 0.5, blend: PIXI.BLEND_MODES.NORMAL, yOffset: 0 },
+      boom: { src: 'https://scenario-messiah.com/battle/assets/effect/hit.png', fw: 64, fh: 64, cols: 8, rows: 8, speed: 0.5, loop: false, anchor: 0.5, blend: PIXI.BLEND_MODES.ADD, yOffset: 0 },
+      heal: { src: 'https://scenario-messiah.com/battle/assets/effect/heal.png', fw: 64, fh: 64, cols: 8, rows: 4, speed: 0.5, loop: false, anchor: 0.5, blend: PIXI.BLEND_MODES.ADD, yOffset: 0 }
     };
 
     this._skillFxMap = new Map([
@@ -1031,4 +1032,3 @@ export class GridRenderer {
     });
   }
 }
-
