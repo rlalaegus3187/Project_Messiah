@@ -1,55 +1,68 @@
 <?php
 include_once('./_common.php');
-define('_INDEX_', true);
+include_once('./_head.php');
 
-if(!$is_member && !$config['cf_open']) { 
-	// 멤버가 아니고, 사이트 오픈이 되어 있지 않은 경우 로그인 페이지로 점프 시키기
-	goto_url(G5_BBS_URL.'/login.php');
+$raidId   = isset($_GET['raidId'])   ? trim($_GET['raidId'])   : null;
+$isViewer = isset($_GET['isViewer']) && $_GET['isViewer'] === 'true';
 
-} else { 
-	if($config['cf_open']) {
-		// 사이트 오픈이 되어 있을 경우
-		if($is_member) {
-			// 사이트 오픈이 되어 있고, 로그인이 끝났을 경우
-			if (G5_IS_MOBILE) {
-				include_once(G5_PATH.'/main.php');
-				exit;
-			}
-			$index_url = "./main.php";
-		} else {
-			// 사이트 오픈이 되어 있고, 로그인이 안되어 있을 경우
-			if (G5_IS_MOBILE) {
-				include_once(G5_PATH.'/enter.php');
-				exit;
-			}
-			$index_url = "./enter.php";
-		}
-		
-	}
-
-	if($index_url == "") {$index_url = "./enter.php";}
-
-	include_once(G5_PATH.'/head.sub.php');
-	add_stylesheet('<link rel="stylesheet" href="'.G5_CSS_URL.'/index.css">', 0);
+if ($character["ch_status"] != "IN_BATTLE" && !$isViewer) {
+  header("Location: https://scenario-messiah.com");
+  exit;
+}
 ?>
+<style>
+  .ban-basic {
+    display: none;
+  }
+</style>
 
-	<div id="site_bgm_box">
-		<iframe src="./bgm.php?action=play" name="bgm_frame" id="bgm_frame" border="0" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" scrolling="no" allowTransparency="true"></iframe>
-	</div>
-	<!-- 콘텐츠 시작 -->
-	<div id="wrapper">
-		<iframe src="<?=$index_url?>" name="frm_main" id="main" border="0" frameborder="0" marginheight="0" marginwidth="0" topmargin="0" scrolling="auto" allowTransparency="true"></iframe>
-	</div>
-	<script>
-	$(document.body).on("keydown", this, function (event) {
-		if (event.keyCode == 116) {
-			document.getElementById('main').contentDocument.location.reload(true);
-			return false;
-		}
-	});
-	</script>
+<link rel="stylesheet" href="styles.css" />
+
+<body class="raid">
+  <div id="ui">
+    <div class="hud glass">
+      <div class="col">
+        <div><strong id="youName">-</strong></div>
+        <div>HP <span id="youHP">-</span> AP <span id="youAP">-</span></div>
+      </div>
+      <div class="skills" id="skillBar"></div>
+    </div>
+    <div id="announce" class="announce"></div>
+    <div id="battle_ch_list" class="glass"> </div>
+  </div>
+
+  <div id="game"></div>
+  <!-- Combat Log -->
+  <div id="log" class="log glass"></div>
+
+  <div id="result" class="hidden">
+    <div id="result-title"></div>
+    <div id="result-detail"></div>
+    <div id="result-reward"></div>
+    <button id="result-ok">확인</button>
+  </div>
+
+  <? include(G5_PATH . '/chat/index.php'); ?>
+</body>
+
+<script>
+  window.raidId = <?=
+                  $raidId === null
+                    ? 'window.teamId' : $raidId
+                  ?>;
+  window.isViewer = <?= $isViewer ? 'true' : 'false' ?>;
+</script>
+
+<script src="https://scenario-messiah.com/public/js/socket.io.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.0/pixi.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pixi-filters@latest/dist/browser/pixi-filters.min.js"></script>
+
+<script type="module" src="net.js"></script>
+<script type="module" src="hud.js"></script>
+<script type="module" src="grid.js"></script>
+<script type="module" src="skills.js"></script>
+<script type="module" src="client.js"></script>
 
 <?php
-	include_once(G5_PATH.'/tail.sub.php');
-}
+include_once('./_tail.php');
 ?>
