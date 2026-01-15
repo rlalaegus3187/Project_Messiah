@@ -159,7 +159,7 @@ export class Net {
 
 	switchMap(targetMap, spawn) {
 		this.currentMap = targetMap;
-		this.emit('map:switch', { targetMap, spawn }); // ✅ 서버 이벤트명과 일치
+		this.emit('map:switch', { targetMap, spawn }); 
 	}
 
 	move(x, y, dir) {
@@ -217,3 +217,4 @@ export class Net {
 		if (fn) fn(arg);
 	}
 }
+
