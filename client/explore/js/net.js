@@ -14,15 +14,14 @@ export class Net {
 		this.handlers = new Map();
 		this.currentMap = 'lobby';
 		this.roomState = { switches: {}, gathered: [] };
-		this.objectState = new Map(); // id -> state
+		this.objectState = new Map();
 
 		this.MIN_INTERVAL = 50;
 		this.lastSentAt = 0;
 		this.pending = null;
 		this.timer = null;
-		this.lastMoveAt = new Map(); // id -> timestamp(ms)
+		this.lastMoveAt = new Map(); 
 
-		// 대화/인터랙션 진행 상황(옵션)
 		this.currentDialogue = null;
 	}
 
@@ -80,7 +79,7 @@ export class Net {
 			}
 		});
 
-		// 기존 오브젝트 이벤트(있으면 사용)
+		// 기존 오브젝트 이벤트
 		this.socket.on('object:interact', (evt) => this._call('object:interact', evt));
 		this.socket.on('object:update', (evt) => this._call('object:update', evt));
 
@@ -101,7 +100,6 @@ export class Net {
 	applySerializedState(payload) {
 		const arr = Array.isArray(payload?.objects) ? payload.objects : [];
 
-		// id/state 로 매핑된 전역 objectState 생성
 		this.objectState = new Map(
 			arr.map(({ id, state }) => [String(id), state])
 		);
@@ -195,7 +193,7 @@ export class Net {
 		this.emit('object:state', { objectId, state });
 	}
 
-	// ===== 상호작용 시작 (클라→서버) =====
+	// 상호작용 시작
 	interact(target) {
 		if (window.isTempChar) return;
 
@@ -205,7 +203,7 @@ export class Net {
 		this.emit('player:interaction', { objectId: String(objectId) });
 	}
 
-	// ===== 선택 전송 =====
+	//선택 전송
 	choose(nodeId, choice) {
 		if (window.isTempChar) return;
 		if (!nodeId) return;
@@ -217,3 +215,4 @@ export class Net {
 		if (fn) fn(arg);
 	}
 }
+
