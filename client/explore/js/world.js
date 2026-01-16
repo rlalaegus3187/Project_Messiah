@@ -3,7 +3,7 @@ import { loadCollision, isBlocked as _isBlocked } from './collision.js';
 export class World {
     constructor(net) {
         this.net = net;
-        this.playerRadius = 14; // 상호작용/충돌 계산에 사용하는 플레이어 반경
+        this.playerRadius = 14;
         this.mapName = 'lobby';
         this.map = null;
         this.collision = null;
@@ -17,14 +17,13 @@ export class World {
                 await this.setMap(payload.maps);
             });
         }
-        this.socket = io("https://scenario-messiah.com:8080/explore");
+        this.socket = io("https://homepage:8080/explore");
     }
 
     async setMap(maps) {
         const m = maps?.current ? maps.current : maps;
         if (!m) return;
 
-        // 이름이 없으면 'server'로
         this.mapName = m.name || 'lobby';
         this.map = m;
 
@@ -52,14 +51,11 @@ export class World {
         if (!obj) return false;
         // 이미 획득한 채집물은 제외
         if (obj.type === 'gather' && gathered.has(obj.id)) return false;
-        // 잠긴 문인데 필요한 스위치가 이미 켜졌으면 제외(열렸다고 간주)
         if (obj.type === 'door_locked' && obj.needSwitch) {
             const on = !!roomState?.switches?.[obj.needSwitch];
             if (on) return false;
         }
-        // 명시 플래그가 있으면 우선
         if (Object.prototype.hasOwnProperty.call(obj, 'interact')) return !!obj.interact;
-        // 기본 타입 셋
         const INTERACTABLE = new Set(['npc', 'sign', 'switch', 'door', 'door_locked', 'gather', 'item_add', 'item_remove', 'keyword_add', 'keyword_remove', 'quest']);
         return INTERACTABLE.has(obj.type);
     }
@@ -73,9 +69,8 @@ export class World {
         const cy = obj.y + oy / 2;
         // 플레이어 충돌 반경
         const playerR = this.playerRadius ?? 14;
-        const margin = 8; // 여유
+        const margin = 8; 
         const needed = Math.max(w, h) / 2 + playerR + margin;
-        // 명시 interactDist/talkDist가 있으면 우선, 없으면 크기 기반 자동계산
         const r = obj.interactDist ?? obj.talkDist ?? needed;
         return { cx, cy, r };
     }
@@ -97,7 +92,7 @@ export class World {
         return best;
     }
 
-    // 기존 타일 충돌 (4코너)
+    // 기존 타일 충돌
     _blockedByTiles(x, y, r = 12) {
         if (!this.collision) return false;
         if (window.ignoreColliosion) return false;
@@ -106,7 +101,7 @@ export class World {
         return c(x - r, y - r) || c(x + r, y - r) || c(x - r, y + r) || c(x + r, y + r);
     }
 
-    // 오브젝트 충돌 (AABB 교차)
+    // 오브젝트 충돌 
     _blockedByObjects(x, y, r = 14) {
         const objs = this.map?.objects || [];
         const gathered = new Set(this.net?.roomState?.gathered || []);
@@ -115,8 +110,8 @@ export class World {
         const pl = x - r, pr = x + r, pt = y - r, pb = y + r;
 
         for (const o of objs) {
-            if (!o?.collide) continue;                    // collide가 true인 것만
-            if (o.type === 'gather' && gathered.has(o.id)) continue; // 이미 주운 채집물은 충돌 제외
+            if (!o?.collide) continue;            
+            if (o.type === 'gather' && gathered.has(o.id)) continue; 
 
             const w = o.bbox?.w ?? 28;
             const h = o.bbox?.h ?? 20;
@@ -148,18 +143,17 @@ export class World {
         return this._blockedByTiles(x, y, r) || this._blockedByObjects(x, y, r);
     }
 
-    // (선택) 반경 상호작용 — 네가 기존에 이미 구현했다면 그대로 두면 됨
+    // 반경 상호작용
     tryInteract(player, _radiusIgnored = null) {
-        // 힌트(E)와 같은 후보/같은 거리 기준으로 찾는다
         const target = this.findNearestInteractable(player.x, player.y);
         if (!target) return null;
 
-        // 동일한 중심/반경 계산(_objCenterAndRadius)로 최종 근접 여부 확인
         const { cx, cy, r } = this._objCenterAndRadius(target);
         const dx = player.x - cx, dy = player.y - cy;
         if (dx * dx + dy * dy <= r * r) {
-            return target; // 상호작용 범위 안
+            return target; 
         }
-        return null;     // 힌트는 떴지만 실제론 살짝 벗어난 경우
+        return null;
     }
+
 }
