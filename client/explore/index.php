@@ -10,7 +10,7 @@ if ($character["ch_id"]) {
 }
 
 if ($character["ch_status"] == "IN_BATTLE") {
-	header("Location: https://scenario-messiah.com/battle/index.php?raid_id={$character['ch_battle']}");
+	header("Location: https://homepage.com/battle/index.php?raid_id={$character['ch_battle']}");
 	exit;
 }
 
@@ -26,7 +26,6 @@ if ($character["ch_status"] == "IN_BATTLE") {
 <body>
 
 	<div id="ui">
-		<!---	<strong>WASD</strong> 이동 • <strong>E</strong> 상호작용 • <strong>↑/↓ 또는 숫자키</strong>로 선택 • <strong>Enter</strong>로 확정 • <strong>Esc</strong> 닫기   -->
 		<span id="hint"></span>
 	</div>
 
@@ -43,4 +42,5 @@ if ($character["ch_status"] == "IN_BATTLE") {
 
 	<script src="<?= G5_URL ?>/public/js/socket.io.min.js"></script>
 	<script type="module" src="./explore/main.js"></script>
+
 </body>
