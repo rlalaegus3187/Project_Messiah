@@ -18,7 +18,6 @@ export class Input {
 			const k = e.key;
 			const kl = k.toLowerCase();
 
-			// ESC → 대화창 닫기
 			if (k === 'Escape' && isDlgOpen()) {
 				e.preventDefault();
 				closeDialogue();
@@ -52,7 +51,6 @@ export class Input {
 				}
 			}
 
-			// F2 → 충돌박스 토글
 			if (k === 'F2' && window.isAdmin) {
 				this.renderer.showCollision = !this.renderer.showCollision;
 				showHint(
@@ -60,7 +58,6 @@ export class Input {
 				);
 			}
 
-			// F2 → 충돌박스 토글
 			if (k === 'F4' && window.isAdmin) {
 				window.ignoreColliosion = !window.ignoreColliosion;
 			}
@@ -77,7 +74,7 @@ export class Input {
 	}
 
 	get dir() {
-		if (!this.allow) return { x: 0, y: 0 }; // 🚫 차단
+		if (!this.allow) return { x: 0, y: 0 };
 		const d = { x: 0, y: 0 };
 		if (this.keys.has('w') || this.keys.has('arrowup')) d.y -= 1;
 		if (this.keys.has('s') || this.keys.has('arrowdown')) d.y += 1;
@@ -87,7 +84,7 @@ export class Input {
 	}
 
 	consumeInteract() {
-		if (!this.allow) return false; // 🚫 차단
+		if (!this.allow) return false;
 		const now = performance.now();
 		if (this.keys.has('e') && now - this.lastE > 250) {
 			this.lastE = now;
@@ -96,3 +93,4 @@ export class Input {
 		return false;
 	}
 }
+
