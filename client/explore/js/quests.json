@@ -1,0 +1,123 @@
+{
+  "sample_personal_quest": {
+    "name": "퀘스트의 대표 이름",
+    "summary": "퀘스트 요약본. 해당 설명은 바뀌지 않고 그대로 남아있을 겁니다.",
+    "subquests": {
+      "subquest_1": {
+        "title": "서브퀘스트1.",
+        "summary": "서브퀘스트1의 내용. 오른쪽 npc에게 말을 걸었다.",
+        "require": {},
+        "obj_id": "lobby_npc_2",
+        "dialogue_id": "sample_personal_quest_1",
+        "next": [
+          "subquest_2"
+        ]
+      },
+      "subquest_2": {
+        "title": "서브퀘스트 2.",
+        "summary": "서브 퀘스트 2에 해당하는 설명문입니다. 다시 오른쪽 안내원에게 가서 말을 걸자!",
+        "require": {},
+        "obj_id": "lobby_npc_1",
+        "dialogue_id": "sample_personal_quest_2",
+        "next": [
+          "subquest_3"
+        ]
+      },
+      "subquest_3": {
+        "title": "서브 퀘스트 3.",
+        "summary": "최종 단계에 해당하는 설명문입니다. 다시 왼쪽 안내워에게 말을 걸면 퀘스트가 완료!",
+        "require": {},
+        "obj_id": "lobby_npc_2",
+        "dialogue_id": "sample_personal_quest_complete",
+        "rewards": {
+          "keyword_add": [
+            "sample_personal_quest_done"
+          ],
+          "item_add": [
+            {
+              "item_id": "11",
+              "count": 1
+            }
+          ]
+        }
+      }
+    }
+  },
+  "hwh_quest_1": {
+    "name": "폐음료수 캔 기부",
+    "summary": "황우혁은 혹시 음료수를 먹고 쓰레기통이 아닌 자신에게 버려줄 수 있는지 전단지를 붙였다. 듣기로 이 음료수 100캔의 뚜껑을 모아 보내면 추첨을 통해 1000만 원 상당의 상품을 주는 이벤트를 한다던데...",
+    "subquests": {
+      "hwh_quest_1": {
+        "title": "음료수를 뽑아라",
+        "summary": "특이한 부탁이다. 마침 목이 말랐으니 음료수를 뽑으러 가자.",
+        "obj_id": "b1_corrider_vendingmc",
+        "dialogue_id": "hwh_quest_1_complete",
+        "rewards": {
+          "keyword_add": [
+            "hwh_quest_1_complete"
+          ]
+        }
+      }
+    }
+  },
+  "mich_quest_2": {
+    "name": "간식 심부름",
+    "summary": "미첼라는 배가 고프다며 당신에게 간식을 가져다 달라고 부탁했다. 레스토랑에서 간식을 구매하던 중, 과거 연구시설 습격 사건과 미첼라를 둘러싼 불길한 소문을 우연히 엿듣게 된다. 레스토랑에서 간식을 구입한 후 들은 소문에 대해 확인해야 한다.",
+    "subquests": {
+      "mich_quest_2": {
+        "title": "레스토랑의 수상한 대화",
+        "summary": "레스토랑에 도착해 카운터 직원에게 주문을 넣자.",
+        "obj_id": "2f_restaurant_npc",
+        "dialogue_id": "mich_quest_2_complete",
+        "rewards": {
+          "keyword_add": [
+            "mich_quest_2_complete"
+          ]
+        }
+      }
+    }
+  },
+  "hch_quest_1": {
+    "name": "피자 배달을 부탁해",
+    "summary": "헌터 협회 스튜디오실로 피자 배달을 하러 온 하채현 헌터. 하지만 불운에 휘말려 아르바이트는 커녕 미첼라가 몰래 빼돌려 준 태광 길드의 자료까지 잃어버리고 말았다. 그를 도와주자.",
+    "subquests": {
+      "hch_quest_1_2": {
+        "title": "배달원을 찾아서",
+        "summary": "치료실의 배달원에게 보고하자.",
+        "obj_id": "5f_healthroom_npc",
+        "dialogue_id": "hch_quest_1_complete",
+        "rewards": {
+          "keyword_add": [
+            "mich_quest_2_complete"
+          ]
+        }
+      },
+      "start": {
+        "title": "피자 배달",
+        "summary": "스튜디오실에 있는 사람에게 피자를 배달하자.",
+        "obj_id": "b1_studio_npc1",
+        "dialogue_id": "hch_quest_1_2",
+        "next": [
+          "hch_quest_1_2"
+        ]
+      }
+    }
+  },
+  "cge_quest_1": {
+    "name": "제 책을 보신 적 있나요?",
+    "summary": "최가을이 잃어버린 책을 찾아주자.",
+    "subquests": {
+      "cge_quest_1": {
+        "title": "잃어버린 책을 찾아서",
+        "summary": "잠이 잘 오는 장소하면 역시 바람이 솔솔 부는 옥상정원이지. 여기서부터 찾아보자.",
+        "obj_id": "15f_rooftop_picnic",
+        "dialogue_id": "cge_quest_1_complete",
+        "rewards": {
+          "keyword_add": [
+            "cge_quest_1_complete"
+          ]
+        }
+      }
+    }
+  }
+}
