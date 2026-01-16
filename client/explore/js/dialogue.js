@@ -1,6 +1,3 @@
-// dialogue.js (교체본)
-
-// DOM refs
 export const canvas = document.getElementById('game');
 export const mapSelect = document.getElementById('mapSelect');
 export const hintEl = document.getElementById('hint');
@@ -8,7 +5,6 @@ export const dlgBox = document.getElementById('dialogueBox');
 export const dlgText = document.getElementById('dialogueText');
 export const choicesEl = document.getElementById('choices');
 
-// ---------- State ----------
 const dialogState = {
   active: false,
   dialogueId: null,
@@ -21,7 +17,6 @@ const dialogState = {
   _currentChoices: [],
 };
 
-// 서버로 선택을 전달해 줄 콜백 (net.js에서 주입)
 let choiceEmitter = null;
 export function setChoiceEmitter(fn) { choiceEmitter = fn; }
 
@@ -47,7 +42,6 @@ export function showHint(msg, t = 1200) {
   }, Math.max(0, t | 0));
 }
 
-// ---------- Dialogue visibility ----------
 export function isDlgOpen() { return !!dlgBox && dlgBox.style.display === 'block'; }
 export function openDialogue(text = '') { setDialogueText(text); if (dlgBox) dlgBox.style.display = 'block'; }
 export function closeDialogue() {
@@ -65,10 +59,8 @@ export function closeDialogue() {
 }
 
 
-// ---------- Dialogue text ----------
 export function setDialogueText(text) { if (dlgText) dlgText.textContent = text ?? ''; }
 
-// ---------- Choices ----------
 export function clearChoices() {
   dialogState.choices = [];
   dialogState.index = 0;
@@ -144,7 +136,6 @@ export function dlgCleanupForClose() {
   dialogState._currentChoices = [];
 }
 
-// ---------- Rendering ----------
 function renderChoicesOrClose() {
   const hasChoices = dialogState._currentChoices && dialogState._currentChoices.length > 0;
   if (hasChoices) {
@@ -192,7 +183,6 @@ function renderChoicesForCurrentNode() {
   setChoices(bound);
 }
 
-// ---------- 외부에서 직접 호출할 네트 이벤트 핸들러 ----------
 export function handleInteractionStart({ dialogue }) {
   if (!dialogue) return;
   renderServerNode(dialogue);
@@ -217,7 +207,6 @@ export function handleInteractionFail(e) {
   showHint('이벤트 발생 실패!', 1200);
 }
 
-// ---------- Keyboard helpers ----------
 export function nextChoice() { if (dialogState.choices.length) selectChoice(dialogState.index + 1); }
 export function prevChoice() { if (dialogState.choices.length) selectChoice(dialogState.index - 1); }
 export function activateCurrent() { activateChoice(dialogState.index); }
@@ -225,3 +214,4 @@ export function activateByNumber(n) {
   if (!dialogState.choices.length) return;
   if (n >= 1 && n <= dialogState.choices.length) activateChoice(n - 1);
 }
+
